@@ -52,4 +52,28 @@ public class BasicCalculatorTest {
                 () -> first + " - " + second + " should equal " + expectedResult);
     }
 
+    @DisplayName("Testing several multiplications")
+    @ParameterizedTest(name = "{0} * {1} = {2}")
+    @CsvSource({
+            "0,    1,   0",
+            "1,    -2,   -2",
+            "5,  5, 25",
+            "12,  5, 60"
+    })
+    public void severalMultiplications(Long first, Long second, Long expectedResult) {
+        assertEquals(expectedResult, basicCalculator.multiply(first, second),
+                () -> first + " * " + second + " should equal " + expectedResult);
+    }
+
+    @DisplayName("Testing several divisions")
+    @ParameterizedTest(name = "{0} / {1} = {2}")
+    @CsvSource({
+            "50,  2, 25",
+            "20, -2, -10",
+            "80,  4, 20"
+    })
+    public void severalDivisions(Long first, Long second, Long expectedResult) {
+        assertEquals(expectedResult, basicCalculator.divide(first, second),
+                () -> first + " * " + second + " should equal " + expectedResult);
+    }
 }
