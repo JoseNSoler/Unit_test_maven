@@ -40,5 +40,16 @@ public class BasicCalculatorTest {
     }
 
 
+    @DisplayName("Testing several subtracts")
+    @ParameterizedTest(name = "{0} - {1} = {2}")
+    @CsvSource({
+            "50,    25,   25",
+            "1,    2,   -1",
+            "45,  100, -55"
+    })
+    public void manySubtractions(Long first, Long second, Long expectedResult) {
+        assertEquals(expectedResult, basicCalculator.subtraction(first, second),
+                () -> first + " - " + second + " should equal " + expectedResult);
+    }
 
 }
